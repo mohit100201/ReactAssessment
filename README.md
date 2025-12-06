@@ -1,50 +1,153 @@
-# Welcome to your Expo app 👋
+E-Commerce App (React Native + Expo Router)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A simple and clean mobile e-commerce application built using Expo, React Native, and Expo Router.
+The app includes:
 
-## Get started
+Login screen with validation
 
-1. Install dependencies
+Product list page
 
-   ```bash
-   npm install
-   ```
+Product details page
 
-2. Start the app
+Global Cart using Context API
 
-   ```bash
-   npx expo start
-   ```
+Cart screen with quantity selector
 
-In the output, you'll find options to open the app in a
+Fully reusable UI components
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+🚀 Features
+🔐 Authentication
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Email & password validation
 
-## Get a fresh project
+Focus styles
 
-When you're ready, run:
+Toggle show/hide password
 
-```bash
-npm run reset-project
-```
+Proper error messages
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+🛍 Product Features
 
-## Learn more
+Product listing with FlatList
 
-To learn more about developing your project with Expo, look at the following resources:
+Reusable product card UI
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Full product description view
 
-## Join the community
+Navigation with expo-router
 
-Join our community of developers creating universal apps.
+🛒 Cart System
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Global Cart state using Context API
+
+Add to Cart from Product Details
+
+Increase / Decrease quantity
+
+Remove item
+
+Total price calculation
+
+🎨 UI Components (Reusable)
+
+AuthHeader
+
+InputField
+
+SubmitButton
+
+Clean and scalable architecture
+
+📁 Project Structure
+project-root/
+│
+├── app/
+│   ├── index.tsx                # Login Screen
+│   ├── products/
+│   │   ├── index.tsx            # Product List Page
+│   │   └── [id].tsx             # Product Details Page
+│   ├── cart/
+│   │   └── index.tsx            # Cart Page
+│   └── _layout.tsx              # Root navigation layout
+│
+├── src/
+│   ├── components/
+│   │   ├── AuthHeader.tsx
+│   │   ├── InputField.tsx
+│   │   └── SubmitButton.tsx
+│   │
+│   ├── context/
+│   │   └── CartContext.tsx      # Global cart state
+│   │
+│   ├── data/
+│        └── product.ts           # Mock product data
+│   
+│
+│
+├── assets/
+│   ├── images/
+│   │   ├── background.png
+│   │   ├── light.png
+│   │   └── p1.png... p10.png
+│
+├── README.md
+└── package.json
+
+⚙️ Setup Instructions
+1️⃣ Clone the repository
+git clone https://github.com/mohit100201/ReactAssessment
+cd project-folder
+
+2️⃣ Install dependencies
+npm install
+# or
+yarn install
+
+3️⃣ Start the Expo development server
+npx expo start
+
+4️⃣ Run on device or emulator
+
+Press a → Android emulator
+
+Press i → iOS simulator
+
+Scan QR code in Expo Go app
+
+📦 Libraries Used
+Library	Purpose
+expo-router	File-based navigation
+react-native-safe-area-context	Safe area handling
+@expo/vector-icons	Icons for UI
+expo-status-bar	Control device status bar
+React Context API	Global cart management
+expo-image / RN Image	Product and background images
+🧠 Approach & Architecture Notes
+✔ Component-Based Architecture
+
+Each UI element (inputs, buttons, headers) is separated into individual reusable components to keep screens clean and maintainable.
+
+✔ Global Cart using Context API
+
+Cart data persists across screens and updates instantly.
+This is more reliable than passing params through navigation.
+
+✔ expo-router Navigation
+
+All pages are organized logically in directories:
+
+/products
+
+/cart
+
+/auth
+
+Routes automatically map to files → cleaner code, no manual route config.
+
+✔ FlatList Optimization
+
+The product list uses FlatList for performance and smooth scrolling.
+
+✔ Scalable Folder Structure
+
+Keeps UI components, data, hooks, and context clearly separated to support larger features later.
