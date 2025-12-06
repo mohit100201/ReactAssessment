@@ -58,40 +58,7 @@ SubmitButton
 
 Clean and scalable architecture
 
-📁 Project Structure
-project-root/
-│
-├── app/
-│   ├── index.tsx                # Login Screen
-│   ├── products/
-│   │   ├── index.tsx            # Product List Page
-│   │   └── [id].tsx             # Product Details Page
-│   ├── cart/
-│   │   └── index.tsx            # Cart Page
-│   └── _layout.tsx              # Root navigation layout
-│
-├── src/
-│   ├── components/
-│   │   ├── AuthHeader.tsx
-│   │   ├── InputField.tsx
-│   │   └── SubmitButton.tsx
-│   │
-│   ├── context/
-│   │   └── CartContext.tsx      # Global cart state
-│   │
-│   ├── data/
-│        └── product.ts           # Mock product data
-│   
-│
-│
-├── assets/
-│   ├── images/
-│   │   ├── background.png
-│   │   ├── light.png
-│   │   └── p1.png... p10.png
-│
-├── README.md
-└── package.json
+
 
 ⚙️ Setup Instructions
 1️⃣ Clone the repository
