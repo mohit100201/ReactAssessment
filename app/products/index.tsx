@@ -14,7 +14,7 @@ import { products } from "../../src/data/product";
 const ProductList = () => {
   const router = useRouter();
 
-  // ---------- Render Product Card ----------
+
   const renderItem = ({ item }: any) => (
     <TouchableOpacity
       onPress={() => router.push(`/products/${item.id}`)}
@@ -33,7 +33,7 @@ const ProductList = () => {
         shadowOffset: { width: 0, height: 2 },
       }}
     >
-      {/* Product Image */}
+
       <Image
         source={item.image}
         style={{
@@ -44,7 +44,7 @@ const ProductList = () => {
         }}
       />
 
-      {/* Product Info */}
+
       <View style={{ flex: 1 }}>
         <Text style={{ fontSize: 18, fontWeight: "600" }}>{item.name}</Text>
 
@@ -69,7 +69,7 @@ const ProductList = () => {
     <SafeAreaView
       style={{ flex: 1, backgroundColor: "#f7f7f7", padding: 16 }}
     >
-      {/* -------- Header with Cart Icon -------- */}
+
       <View
         style={{
           flexDirection: "row",
@@ -80,13 +80,13 @@ const ProductList = () => {
       >
         <Text style={{ fontSize: 26, fontWeight: "bold" }}>Products</Text>
 
-        {/* Cart Icon */}
+
         <TouchableOpacity onPress={() => router.push("/cart")}>
           <Ionicons name="cart-outline" size={30} color="black" />
         </TouchableOpacity>
       </View>
 
-      {/* -------- Product List -------- */}
+
       <FlatList
         data={products}
         keyExtractor={(item) => item.id.toString()}

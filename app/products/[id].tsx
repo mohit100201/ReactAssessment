@@ -9,7 +9,7 @@ export default function ProductDetails() {
     const router = useRouter();
     const { addToCart } = useCart();
 
-    // convert id to number & find product
+    
     const product = products.find((p) => p.id === Number(id));
 
     if (!product) {
@@ -22,7 +22,7 @@ export default function ProductDetails() {
 
     return (
         <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
-            {/* Product Image */}
+           
             <Image
                 source={product.image}
                 style={{
@@ -35,14 +35,14 @@ export default function ProductDetails() {
                 resizeMode="contain"
             />
 
-            {/* Content */}
+           
             <View style={{ padding: 16 }}>
-                {/* Name */}
+                
                 <Text style={{ fontSize: 24, fontWeight: "bold", marginBottom: 8 }}>
                     {product.name}
                 </Text>
 
-                {/* Price */}
+                
                 <Text
                     style={{
                         fontSize: 22,
@@ -54,12 +54,12 @@ export default function ProductDetails() {
                     ₹ {product.price}
                 </Text>
 
-                {/* Description */}
+                
                 <Text style={{ fontSize: 16, color: "#555", lineHeight: 22 }}>
                     {product.description}
                 </Text>
 
-                {/* Add to Cart Button */}
+                
                 <TouchableOpacity
                     onPress={() => {
                         addToCart(product);

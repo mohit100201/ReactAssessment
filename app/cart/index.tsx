@@ -13,10 +13,10 @@ import { useCart } from "../../src/context/CartContext";
 export default function CartScreen() {
   const { id } = useLocalSearchParams();
 
-  // ❗ useCart must be inside component
+  
   const { cartItems, increaseQty, decreaseQty, removeItem } = useCart();
 
-  // ✅ Calculate total
+  
   const totalAmount = cartItems.reduce(
     (sum, item) => sum + item.price * item.qty,
     0

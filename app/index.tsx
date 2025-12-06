@@ -1,40 +1,40 @@
-import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-  Image,
   ImageBackground,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   View
 } from "react-native";
 
+import AuthHeader from "../src/components/AuthHeader";
+import InputField from "../src/components/InputField";
+import SubmitButton from "../src/components/SubmitButton";
+
 export default function Index() {
   const router = useRouter();
-  const [emailFocus, setEmailFocus] = useState(false);
-  const [passFocus, setPassFocus] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [emailFocus, setEmailFocus] = useState(false);
+  const [passFocus, setPassFocus] = useState(false);
 
   const [emailError, setEmailError] = useState("");
   const [passError, setPassError] = useState("");
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const validateEmail = (value: any) => {
+  const validateEmail = (value: string) => {
     setEmail(value);
     const emailRegex = /\S+@\S+\.\S+/;
     setEmailError(!emailRegex.test(value) ? "Enter a valid email" : "");
   };
 
-  const validatePassword = (value: any) => {
+  const validatePassword = (value: string) => {
     setPassword(value);
     setPassError(value.length < 8 ? "Password must be 8 characters" : "");
   };
@@ -51,141 +51,45 @@ export default function Index() {
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <ScrollView
             contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 16 }}
             keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator={false}
           >
-            {/* TOP SECTION */}
-            <View style={{ flex: 0.5, minHeight: 200 }}>
-              <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                <Image source={require("../assets/images/light.png")} />
-                <Image
-                  source={require("../assets/images/light.png")}
-                  style={{ marginTop: -60, opacity: 0.8 }}
-                />
-              </View>
+            <AuthHeader />
 
-              <Text
-                style={{
-                  fontSize: 34,
-                  color: "white",
-                  marginTop: 32,
-                  alignSelf: "center",
-                  fontWeight: "bold",
-                }}
-              >
-                Login
-              </Text>
-            </View>
+            <View style={{ marginTop: 20 }}>
+              <InputField
+                placeholder="Email"
+                value={email}
+                onChangeText={validateEmail}
+                icon="mail-outline"
+                error={emailError}
+                focus={emailFocus}
+                onFocus={() => setEmailFocus(true)}
+                onBlur={() => setEmailFocus(false)}
+              />
 
-            {/* INPUT SECTION */}
-            <View style={{ flex: 0.5, marginTop: 20, paddingBottom: 40 }}>
+              <InputField
+                placeholder="Password"
+                value={password}
+                onChangeText={validatePassword}
+                icon="lock-closed-outline"
+                error={passError}
+                focus={passFocus}
+                isPassword
+                showPassword={showPassword}
+                setShowPassword={setShowPassword}
+                onFocus={() => setPassFocus(true)}
+                onBlur={() => setPassFocus(false)}
+              />
 
-              {/* EMAIL INPUT */}
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  height: 50,
-                  borderWidth: 2,
-                  borderColor: emailFocus ? "#4E9FEE" : emailError ? "red" : "#ccc",
-                  borderRadius: 10,
-                  paddingHorizontal: 10,
-                  backgroundColor: "white",
-                  marginBottom: 8,
-                }}
-              >
-                <Ionicons
-                  name="mail-outline"
-                  size={22}
-                  color={emailFocus ? "#4E9FEE" : "#777"}
-                  style={{ marginRight: 8 }}
-                />
-
-                <TextInput
-                  style={{ flex: 1 }}
-                  placeholder="Email"
-                  placeholderTextColor="#aaa"
-                  keyboardType="email-address"
-                  value={email}
-                  onChangeText={validateEmail}
-                  onFocus={() => setEmailFocus(true)}
-                  onBlur={() => setEmailFocus(false)}
-                />
-              </View>
-
-              {emailError ? (
-                <Text style={{ color: "red", marginBottom: 8 }}>{emailError}</Text>
-              ) : null}
-
-              {/* PASSWORD INPUT */}
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  height: 50,
-                  borderWidth: 2,
-                  borderColor: passFocus ? "#4E9FEE" : passError ? "red" : "#ccc",
-                  borderRadius: 10,
-                  paddingHorizontal: 10,
-                  backgroundColor: "white",
-                  marginBottom: 8,
-                }}
-              >
-                <Ionicons
-                  name="lock-closed-outline"
-                  size={22}
-                  color={passFocus ? "#4E9FEE" : "#777"}
-                  style={{ marginRight: 8 }}
-                />
-
-                <TextInput
-                  style={{ flex: 1 }}
-                  placeholder="Password"
-                  placeholderTextColor="#aaa"
-                  secureTextEntry={!showPassword}
-                  value={password}
-                  onChangeText={validatePassword}
-                  onFocus={() => setPassFocus(true)}
-                  onBlur={() => setPassFocus(false)}
-                />
-
-                {/* 👁️ EYE ICON */}
-                <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                  <Ionicons
-                    name={showPassword ? "eye-off-outline" : "eye-outline"}
-                    size={22}
-                    color="#777"
-                  />
-                </TouchableOpacity>
-              </View>
-
-              {passError ? (
-                <Text style={{ color: "red", marginBottom: 8 }}>{passError}</Text>
-              ) : null}
-
-              {/* LOGIN BUTTON */}
-              <TouchableOpacity
+              <SubmitButton
+                title="Login"
                 disabled={!isFormValid}
                 onPress={() => router.push("/products")}
-                style={{
-                  height: 50,
-                  backgroundColor: isFormValid ? "#4E9FEE" : "#9CC8F5",
-                  borderRadius: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginTop: 12,
-                }}
-              >
-                <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}>
-                  Login
-                </Text>
-              </TouchableOpacity>
-
+              />
             </View>
           </ScrollView>
         </TouchableWithoutFeedback>
